@@ -203,7 +203,7 @@ public class Client {
 		textField_1.setBounds(136, 96, 184, 28);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
-		
+		//Fpr opening file explorer to select file from Hard Disk and Store its path in String sourceFilePath 
 		JButton btnNewButton_1 = new JButton("Browse");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -213,17 +213,6 @@ public class Client {
 			    if (result == JFileChooser.APPROVE_OPTION) {
 				    File selectedFile = fileChooser.getSelectedFile();
 				    sourceFilePath =selectedFile.getAbsolutePath();
-				    char sp[]=sourceFilePath.toCharArray();
-				    for(int i=0;i<sourceFilePath.length();i++)
-				    {
-				    	if(sp[i]=='\\')
-				    	{
-				    		sp[i]='/';
-				    	}
-				    			
-				    }
-				    sourceFilePath=String.valueOf(sp);
-				   // JOptionPane.showMessageDialog(null, sourceFilePath);
 				    textField_1.setText(sourceFilePath);
 				    file=new File(sourceFilePath);
 				    len =file.length();
@@ -232,7 +221,6 @@ public class Client {
 				    ts=Double.parseDouble(new DecimalFormat("##.##").format(ts));
 					lblNewLabel_1.setText("File Size: "+ts+" MB");
 					String s=""+ts+" MB";
-					System.out.println(s);
 					}
 			}
 		});
