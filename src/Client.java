@@ -63,6 +63,7 @@ public class Client {
 	public Client() {
 		initialize();
 	}
+	//For establishing the connection with the ip entered
 	public void Connect()
 	{
 		ip=textField.getText();
@@ -71,7 +72,7 @@ public class Client {
             public void run() {
 		while (!isConnected) {
 			try {
-			socket = new Socket(ip, 4445);
+			socket = new Socket(ip, 4445);  //Socket in which connection is opened
 			outputStream = new ObjectOutputStream(socket.getOutputStream());
 			
 			isConnected = true;
@@ -85,13 +86,11 @@ public class Client {
 	Thread serverThread = new Thread(task);
     serverThread.start();
 	}
-	
+	//Sending the file details as an object of fileevent
 	public void sendFileDetail()
 	{
 		fileEvent=new fileevent();
 		String filename= sourceFilePath.substring(sourceFilePath.lastIndexOf("/") + 1, sourceFilePath.length());
-		//String path = sourceFilePath.substring(0, sourceFilePath.lastIndexOf("/") + 1);
-		//fileEvent.setDestinationDirectory(destinationPath);
 		fileEvent.setFilename(filename);
 		if(file.isFile())
 		{
@@ -120,6 +119,7 @@ public class Client {
 			}
 
 		}
+	//Sending the file data as the buffer of byte 
 	public void sendFileData() {
 		
 		
@@ -132,18 +132,15 @@ public class Client {
 	    os=socket.getOutputStream();
 	    File myFile = new File (sourceFilePath);
 	    byte [] mybytearray  = new byte [16000];
-        fis = new FileInputStream(myFile);
-        bis = new BufferedInputStream(fis);
-        int count;
-        int sent=0;
-        while((count=bis.read(mybytearray))>0)
-        {
-        	
+            fis = new FileInputStream(myFile);
+            bis = new BufferedInputStream(fis);
+            int count;
+            int sent=0;
+            while((count=bis.read(mybytearray))>0)
+              {
         	sent=sent+count;
-            os.write(mybytearray,0,count);
-        	//System.out.println(count+"  "+sent+" / "+len+"  "+sent/len);
+                os.write(mybytearray,0,count);
             int per=(int )((sent/len)*100);
-          //  System.out.println(per);
         	
         	progressBar.setValue(per);
         	progressBar.setString(per+"%");
@@ -166,6 +163,7 @@ public class Client {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	//To create the UI design with with some onClick action
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
@@ -191,9 +189,6 @@ public class Client {
 		textField.setBounds(136, 45, 233, 30);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
-		
-		// JOptionPane.showMessageDialog(null, ip);
-		
 		JLabel lblS = new JLabel("Browse File:");
 		lblS.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblS.setBounds(45, 101, 100, 21);
