@@ -47,24 +47,24 @@ public class Start {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnServer = new JButton("Recieve");
+		JButton btnServer = new JButton("Recieve"); //To execute the class Server.java
 		btnServer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Server s=new Server();
-				s.Yo();
+				s.Yo();// To call the initiating function of Server.java
 			}
 		});
 		btnServer.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnServer.setBounds(111, 23, 189, 84);
 		frame.getContentPane().add(btnServer);
 		
-		JButton btnStartAsClient = new JButton("Send");
+		JButton btnStartAsClient = new JButton("Send");//To execute the class Client.java
 		btnStartAsClient.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnStartAsClient.setBounds(111, 142, 189, 84);
 		btnStartAsClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client h=new Client();
-				h.Yo();
+				h.Yo();// To call the initiating function of Client.java
 			}
 		});
 		frame.getContentPane().add(btnStartAsClient);
