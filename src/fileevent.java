@@ -16,9 +16,6 @@ public class fileevent implements Serializable {
 	return destinationDirectory;
 	}
 
-	/*public void setDestinationDirectory(String destinationDirectory) {
-	this.destinationDirectory = destinationDirectory;
-	}*/
 
 
 	public String getFilename() {
