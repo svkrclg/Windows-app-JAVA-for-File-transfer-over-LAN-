@@ -37,7 +37,7 @@ public class Server {
     private File dstFile = null;
     private FileOutputStream fileOutputStream = null;
     private JLabel lblNewLabel_3;
-    private String destination=System.getProperty("user.home")+"\\Desktop\\";
+    private String destination=System.getProperty("user.home")+"\\Desktop\\"; // To set default location of destination as dekstop
     JLabel lblNewLabel_1;
     private File file;
     private JButton btnNewButton;
@@ -68,6 +68,7 @@ public class Server {
 	public Server() {
 		initialize();
 	}
+	//For opening the socket for client to connect
 	public void Connect()
 	{
 		  Runnable serverTask = new Runnable() {
@@ -90,6 +91,7 @@ public class Server {
 	        Thread serverThread = new Thread(serverTask);
 	        serverThread.start();
 	}
+	//Downloading the file details as an object as creating a file
 	public void downloadFileDetail()
 	{
 		
@@ -123,7 +125,7 @@ public class Server {
 			e.printStackTrace();
 			} 
 }
-
+//Downloading the file data as the byte buffer
 	 public void downloadFileData()
 	 {
 		
@@ -137,17 +139,17 @@ public class Server {
 		 		byte [] buffer  = new byte [16000];
 		 		fos = new FileOutputStream(outputFile);
 		 		bos=new BufferedOutputStream(fos);
-		 	    double filesize = fileEvent.getFileSize();
+		 	        double filesize = fileEvent.getFileSize();
 				int read = 0;
 				int x=0;
 				int remaining =(int)fileEvent.getFileSize();
+				//Reading the file buffer one by one in each loop and writing the file data is stored location
 				while((read = dis.read(buffer, 0, Math.min(buffer.length, remaining))) > 0) 
 				{
 					remaining -= read;
 					bos.write(buffer,0,read);
 					x=x+read;
 					int per=(int) ((x/filesize)*100);
-					System.out.println(per);
 					progressBar.setValue(per);
 					progressBar.setString(per+"%");
 				}
@@ -219,9 +221,6 @@ public class Server {
 	                JFileChooser f = new JFileChooser();
 	                f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); 
 	                f.showSaveDialog(null);
-
-	               // System.out.println(f.getCurrentDirectory());
-	               // System.out.println(f.getSelectedFile());
 	                destination=f.getSelectedFile()+"\\";
 	                lblNewLabel_1.setText(destination);
 	                lblNewLabel_1.setBounds(105,224,250,14);
@@ -247,7 +246,6 @@ public class Server {
 	           lblNewLabel_6 = new JLabel("");
 	           lblNewLabel_6.setBounds(345, 126, 79, 14);
 	           frame.getContentPane().add(lblNewLabel_6);
-	          // System.out.println(ipAddr.getHostAddress()+".");
 	        } catch (UnknownHostException ex) {
 	            ex.printStackTrace();
 	        }
