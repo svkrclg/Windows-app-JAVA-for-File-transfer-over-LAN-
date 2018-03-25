@@ -133,6 +133,7 @@ public class Client {
 	    File myFile = new File (sourceFilePath);
 	    byte [] mybytearray  = new byte [16000];
             fis = new FileInputStream(myFile);
+            bis = new BufferedInputStream(fis);
             int count;
             int sent=0;
             while((count=bis.read(mybytearray))>0)
