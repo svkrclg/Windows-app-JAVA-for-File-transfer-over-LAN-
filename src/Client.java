@@ -133,13 +133,13 @@ public class Client {
 	    File myFile = new File (sourceFilePath);
 	    byte [] mybytearray  = new byte [16000];
             fis = new FileInputStream(myFile);
-            bis = new BufferedInputStream(fis);
             int count;
             int sent=0;
             while((count=bis.read(mybytearray))>0)
               {
         	sent=sent+count;
                 os.write(mybytearray,0,count);
+		    //for Setting progress bar value
             int per=(int )((sent/len)*100);
         	
         	progressBar.setValue(per);
@@ -147,7 +147,6 @@ public class Client {
         	
         }
         os.flush();
-        bis.close();
         fis.close();
 		JOptionPane.showMessageDialog(null, "Done...Going to exit");
 		Thread.sleep(3000);
